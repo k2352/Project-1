@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-char task1(char message, int key);
+char task1(char* message, int key);
 
 int main()
 {
@@ -22,7 +22,7 @@ int main()
                   char message[100];
                   int key;
                   printf("Enter a message to be encrypted: ");
-                  scanf("%s", &message);
+                  scanf("%s", message);
                   printf("Enter the key: ");
                   scanf("%d", &key);
                   task1(message, key);
@@ -42,12 +42,12 @@ int main()
     return 0;   
 }
 
-char task1(char message, int key)
+char task1(char* message, int key)
 {
     //char encrypt[];
     int i;
-    
-    for (i=0; (i<100 && message[i] != '\0'; i++)
+   // && message[i] != '\0'
+    for (i=0; i<100 ; i++)
     {
         message[i] = message[i] + key;
     }
