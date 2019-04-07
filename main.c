@@ -84,28 +84,57 @@ char task1(char* message, int key, int n)
         if (message[i]>=97 && message[i]<=122)  //Test if character is lowercase
         {
             message[i] = message[i]-97;
-            for (i=0; i<n; i++)
-            {
-                if (message[i]>=0 && message[i]<=25)
-                {
-                    message[i] = (message[i] + key)%26;
-                    message[i] = message[i]+65;
-                }       
-            }
+            message[i] = (message[i] + key)%26;
+            message[i] = message[i]+97;
         }
-        if (message[i]>=65 && message[i]<=90)  //Test if character is lowercase
+        if (message[i]>=65 && message[i]<=90)
         {
             message[i] = message[i]-65;
-            for (i=0; i<n; i++)
-            {
-                if (message[i]>=0 && message[i]<=25)
-                {
-                    message[i] = (message[i] + key)%26;
-                    message[i] = message[i]+65;
-                }       
-            }
+            message[i] = (message[i] + key)%26;
+            message[i] = message[i]+65;
         }
+        //if ((message[i]>=32 && message[i]<=64) || (message[i]>=91 && message[i]<=96) || (message[i]>=123 && message[i]<=126))
+        //{
+          //  message[i] = message[i];
+        //}
+        //printf("Encrypted message is: %s\n", message);
     }
+    printf("Encrypted message is: %s\n", message);
+    return 0;
+}
+
+
+        //message[i] = message[i]-65;
+//        message[i] = (message[i] + key)%26;
+  //      message[i] = message[i]+65;
+    //}
+
+            
+            
+            
+           // for (i=0; i<n; i++)
+           // {
+             //   if (message[i]>=0 && message[i]<=25)
+               // {
+                 //   message[i] = (message[i] + key)%26;
+                    //message[i] = message[i]+65;
+                //}       
+          //  }
+        //}
+       // if (message[i]>=65 && message[i]<=90)  //Test if character is lowercase
+        //{
+          //  message[i] = message[i]-65;
+            //for (i=0; i<n; i++)
+            //{
+              //  if (message[i]>=0 && message[i]<=25)
+                //{
+                  //  message[i] = (message[i] + key)%26;
+                    ////message[i] = message[i]+65;
+                //}       
+            //}
+        //}
+        //message[i] = message[i]+65;
+    //}
     
     //for (i=0; i<n; i++)
     //{
@@ -123,9 +152,9 @@ char task1(char* message, int key, int n)
         //}
     //}
     
-    printf("Encrypted message is: %s\n", message);
-    return 0;
-}
+  //  printf("Encrypted message is: %s\n", message);
+   // return 0;
+//}
 
 //Function which takes an encrypted message, key and number of characters in an array as input
 //and returns the message decrypted
