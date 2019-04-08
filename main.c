@@ -1,3 +1,14 @@
+//Name: Kirallie Hall
+//Student ID: 3304030
+//Title: ENGG1003 Project 1
+//Date created: 02/04/2019
+//Date last modified: 08/04/2019
+//Program Description:  
+//This program allows the user to encrypt and decrypt messages with both
+//a rotation and substitution cipher. Messages can be decrypted with or 
+//without the rotation amount or alphabet substitution. To select an encryption
+//or decryption method, please choose from one of the given options when prompted.
+                        
 #include <stdio.h>
 
 char task1(char* message, int key, int n);  //Function prototype for task1 function
@@ -20,10 +31,11 @@ int main()
         {
             case 'a':   //Encrypt a message with a rotation cipher
             {
-                char message[100];
+                //char message[100];
+                char message[] = "hello world!";
                 int key, i, n;
-                printf("Enter a message to be encrypted: ");
-                scanf("%s", message);
+                //printf("Enter a message to be encrypted: ");
+                //scanf("%s", message);
                 for (i=0; i<100; i++)   //Determine how many characters are in the array
                 {
                     if (message[i] != '\0')
@@ -38,6 +50,11 @@ int main()
                 }
                 printf("Enter the key: ");
                 scanf("%d", &key);
+                while ((key<0) || (key>25))
+                {
+                    printf("Invalid key. Please try again.");
+                    scanf("%d", &key);
+                }
                 task1(message, key, n);
                 break;
             }
