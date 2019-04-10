@@ -223,7 +223,7 @@ char task5(char* message, int n)
             printf("%c", *c);
             //char str1[] = "arbor";
             //if(strstr(c, str1) != NULL)
-            {//
+            //{}
                // printf("yes");
             //}
             //if (strstr(message, c) != NULL)
