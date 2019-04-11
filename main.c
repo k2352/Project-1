@@ -16,7 +16,7 @@
 char task1(char* message, int key, int n);  //Function prototype for task1 function
 char task2(char* message, int key, int n);  //Function prototype for task2 function
 char task5(char* message, int n);           //Function prototype for task5 function
-FILE *checkWord;
+//FILE *checkWord;
 
 int main()
 {
@@ -27,7 +27,7 @@ int main()
     printf("e) Task 5\n");
     printf("Selection: ");
     
-    char c = 'e';
+    char c = 'b';
    //scanf("%c", &c);
     
     do
@@ -67,6 +67,8 @@ int main()
             {
                 //char message[100];
                 char message[] = "ifmmp xpsme!";
+                //char message[] = "SJSFMPCRM WG O USBWIG. PIH WT MCI XIRUS O TWGV PM WHG OPWZWHM HC QZWAP O HFSS, WH KWZZ ZWJS WHG KVCZS ZWTS PSZWSJWBU HVOH WH WG GHIDWR. - OZPSFH SWBGHSWB";
+               
                 int key, i, n;
                 //printf("Enter a message to be decrypted: ");
                 //scanf("%s", message);
@@ -94,7 +96,7 @@ int main()
             case 'e':
             {
                 //char message[100];
-                char message[] = "ifmmp xpsme!";
+                char message[200] = "SJSFMPCRM WG O USBWIG. PIH WT MCI XIRUS O TWGV PM WHG OPWZWHM HC QZWAP O HFSS, WH KWZZ ZWJS WHG KVCZS ZWTS PSZWSJWBU HVOH WH WG GHIDWR. - OZPSFH SWBGHSWB";
                 int i, n;
                 //printf("Enter a message to be decrypted: ");
                 //scanf("%s", message);
@@ -186,16 +188,17 @@ char task2(char* message, int key, int n)
 //and returns the message decrypted without knowledge of the key
 char task5(char* message, int n)
 {
-    checkWord = fopen("words.txt", "r");
-    if(checkWord == NULL) 
-    {
-        perror("fopen()");
-        return 0;
-    }
+    //checkWord = fopen("words.txt", "r");
+    //if(checkWord == NULL) 
+    //{
+      //  perror("fopen()");
+        //return 0;
+    //}
     int i, key, k, compare;
-    char c[100];
+    const char c[10] = "the";
+    char *result;
     
-    for (k=0; k<1; k++)
+    for (k=2; k<3; k++)
     {
         for (i=0; i<n; i++)
         {
@@ -216,11 +219,18 @@ char task5(char* message, int n)
                 message[i] = message[i];
             }
         }
-        //printf("\nDecrypted message is: %s\n", message);
-        while(!feof(checkWord))
+        result = strstr(message, c);
+        if (result != NULL)
         {
-            fscanf(checkWord, "%c", c);
-            printf("%c", *c);
+            printf("%s", result);
+        }
+    }
+
+        //printf("\nDecrypted message is: %s\n", message);
+        //while(!feof(checkWord))
+        //{
+          //  fscanf(checkWord, "%c", c);
+            //printf("%c", *c);
             //char str1[] = "arbor";
             //if(strstr(c, str1) != NULL)
             //
@@ -256,7 +266,7 @@ char task5(char* message, int n)
             //printf("%d\n", compare);
             
             
-        }
+        
         //{
           //  char c;
             //fscanf(checkWord, "%c", &c);
@@ -267,6 +277,6 @@ char task5(char* message, int n)
         //printf("\nDecrypted message is: %s\n", message);
         
         
-    }
+   // }
     return 0;
 }
