@@ -27,7 +27,7 @@ int main()
     printf("e) Task 5\n");
     printf("Selection: ");
     
-    char c = 'b';
+    char c = 'a';
    //scanf("%c", &c);
     
     do
@@ -93,27 +93,27 @@ int main()
                 task2(message, key, n);
                 break;
             }
-            case 'e':
-            {
+            //case 'e':
+            //{
                 //char message[100];
-                char message[200] = "SJSFMPCRM WG O USBWIG. PIH WT MCI XIRUS O TWGV PM WHG OPWZWHM HC QZWAP O HFSS, WH KWZZ ZWJS WHG KVCZS ZWTS PSZWSJWBU HVOH WH WG GHIDWR. - OZPSFH SWBGHSWB";
-                int i, n;
+              //  char message[200] = "SJSFMPCRM WG O USBWIG. PIH WT MCI XIRUS O TWGV PM WHG OPWZWHM HC QZWAP O HFSS, WH KWZZ ZWJS WHG KVCZS ZWTS PSZWSJWBU HVOH WH WG GHIDWR. - OZPSFH SWBGHSWB";
+                //int i, n;
                 //printf("Enter a message to be decrypted: ");
                 //scanf("%s", message);
-                for (i=0; i<100; i++)   //Determine how many characters are in the array
-                {
-                    if (message[i] != '\0')
-                    {
-                        n++;
-                    }
-                    else
-                    {
-                        break;
-                    }  
-                }
-                task5(message, n);
-                break;
-            }
+                //for (i=0; i<100; i++)   //Determine how many characters are in the array
+                //{
+                  //  if (message[i] != '\0')
+                    //{
+                      //  n++;
+                    //}
+                    //else
+                    //{
+                      //  break;
+                    //}  
+                //}
+                //task5(message, n);
+                //break;
+            //}
             default: printf("Unknown option %c\n Please enter a, b, c or d\n", c);   
         }
 
@@ -186,45 +186,45 @@ char task2(char* message, int key, int n)
 
 //Function which takes an encrypted message and number of characters in an array as input
 //and returns the message decrypted without knowledge of the key
-char task5(char* message, int n)
-{
+//char task5(char* message, int n)
+//{
     //checkWord = fopen("words.txt", "r");
     //if(checkWord == NULL) 
     //{
       //  perror("fopen()");
         //return 0;
     //}
-    int i, key, k, compare;
-    const char c[10] = "the";
-    char *result;
+  //  int i, key, k, compare;
+    //const char c[10] = "the";
+    //char *result;
     
-    for (k=2; k<3; k++)
-    {
-        for (i=0; i<n; i++)
-        {
-            if (message[i]>=97 && message[i]<=122)
-            {
-                message[i] = message[i]-97;
-                message[i] = (message[i] - k)%26;
-                message[i] = message[i]+97;
-            }
-            else if (message[i]>=65 && message[i]<=90)
-            {
-                message[i] = message[i]-65;
-                message[i] = (message[i] - k)%26;
-                message[i] = message[i]+97;
-            }
-            else
-            {
-                message[i] = message[i];
-            }
-        }
-        result = strstr(message, c);
-        if (result != NULL)
-        {
-            printf("%s", result);
-        }
-    }
+    //for (k=0; k<1; k++)
+    //{
+      //  for (i=0; i<n; i++)
+        //{
+          //  if (message[i]>=97 && message[i]<=122)
+            //{
+              //  message[i] = message[i]-97;
+                //message[i] = (message[i] - k)%26;
+                //message[i] = message[i]+97;
+            //}
+            //else if (message[i]>=65 && message[i]<=90)
+            //{
+              //  message[i] = message[i]-65;
+                //message[i] = (message[i] - k)%26;
+                //message[i] = message[i]+97;
+            //}
+            //else
+            //{
+              //  message[i] = message[i];
+            //}
+        //}
+        //result = strstr(message, c);
+        //if (result != NULL)
+        //{
+          //  printf("%s", result);
+        //}
+//    }
 
         //printf("\nDecrypted message is: %s\n", message);
         //while(!feof(checkWord))
@@ -278,5 +278,5 @@ char task5(char* message, int n)
         
         
    // }
-    return 0;
-}
+  //  return 0;
+//}
