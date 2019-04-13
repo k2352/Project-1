@@ -11,19 +11,11 @@
        
 #include <stdio.h>
 #include <stdlib.h>
-<<<<<<< HEAD
 #include <string.h>
-=======
-
->>>>>>> refs/heads/master
 char task1(char* message, int key, int n);  //Function prototype for task1 function
 char task2(char* message, int key, int n);  //Function prototype for task2 function
 char task5(char* message, int n);           //Function prototype for task5 function
-<<<<<<< HEAD
 //FILE *checkWord;
-=======
-FILE *checkWord;
->>>>>>> refs/heads/master
 
 int main()
 {
@@ -44,7 +36,7 @@ int main()
             case 'a':   //Encrypt a message with a rotation cipher
             {
                 //char message[100];
-                char message[] = "hello world!";
+                char message[100] = "hello world!";
                 int key, i, n;
                 //printf("Enter a message to be encrypted: ");
                 //scanf("%s", message);
@@ -73,12 +65,9 @@ int main()
             case 'b':   //Decrypt an encrypted message with a rotation cipher
             {
                 //char message[100];
-                char message[] = "ifmmp xpsme!";
-<<<<<<< HEAD
+                char message[100] = "ifmmp xpsme!";
                 //char message[] = "SJSFMPCRM WG O USBWIG. PIH WT MCI XIRUS O TWGV PM WHG OPWZWHM HC QZWAP O HFSS, WH KWZZ ZWJS WHG KVCZS ZWTS PSZWSJWBU HVOH WH WG GHIDWR. - OZPSFH SWBGHSWB";
                
-=======
->>>>>>> refs/heads/master
                 int key, i, n;
                 //printf("Enter a message to be decrypted: ");
                 //scanf("%s", message);
@@ -103,33 +92,10 @@ int main()
                 task2(message, key, n);
                 break;
             }
-<<<<<<< HEAD
-            //case 'e':
-            //{
-                //char message[100];
-              //  char message[200] = "SJSFMPCRM WG O USBWIG. PIH WT MCI XIRUS O TWGV PM WHG OPWZWHM HC QZWAP O HFSS, WH KWZZ ZWJS WHG KVCZS ZWTS PSZWSJWBU HVOH WH WG GHIDWR. - OZPSFH SWBGHSWB";
-                //int i, n;
-                //printf("Enter a message to be decrypted: ");
-                //scanf("%s", message);
-                //for (i=0; i<100; i++)   //Determine how many characters are in the array
-                //{
-                  //  if (message[i] != '\0')
-                    //{
-                      //  n++;
-                    //}
-                    //else
-                    //{
-                      //  break;
-                    //}  
-                //}
-                //task5(message, n);
-                //break;
-            //}
-=======
             case 'e':
             {
                 //char message[100];
-                char message[] = "ifmmp xpsme!";
+                char message[100] = "TVU TVAOTH: AOL KHAH IYVBNOA AV";
                 int i, n;
                 //printf("Enter a message to be decrypted: ");
                 //scanf("%s", message);
@@ -147,7 +113,6 @@ int main()
                 task5(message, n);
                 break;
             }
->>>>>>> refs/heads/master
             default: printf("Unknown option %c\n Please enter a, b, c or d\n", c);   
         }
 
@@ -176,12 +141,7 @@ char task1(char* message, int key, int n)
             message[i] = (message[i] + key)%26;
             message[i] = message[i]+65;
         }
-<<<<<<< HEAD
-        //if ((message[i]>=32 && message[i]<=64) || (message[i]>=91 && message[i]<=96) || (message[i]>=123 && message[i]<=126))
         else
-=======
-        if ((message[i]>=32 && message[i]<=64) || (message[i]>=91 && message[i]<=96) || (message[i]>=123 && message[i]<=126))
->>>>>>> refs/heads/master
         {
             message[i] = message[i];
         }
@@ -201,41 +161,37 @@ char task2(char* message, int key, int n)
         if (message[i]>=97 && message[i]<=122)
         {
             message[i] = message[i]-97;
-            message[i] = (message[i] - key)%26;
-<<<<<<< HEAD
+            if ((message[i]-key)<0)
+            {
+                message[i] = (message[i]-key+26)%26;
+            }
+            else
+            {
+                message[i] = (message[i] - key)%26;   
+            }
             message[i] = message[i]+65;
-=======
-            message[i] = message[i]+97;
->>>>>>> refs/heads/master
         }
         
-<<<<<<< HEAD
         else if (message[i]>=65 && message[i]<=90)
         {
             message[i] = message[i]-65;
-            message[i] = (message[i] - key)%26;
+            if ((message[i]-key)<0)
+            {
+                message[i] = (message[i]-key+26)%26;
+            }
+            else
+            {
+                message[i] = (message[i] - key)%26;   
+            }
             message[i] = message[i]+65;
         }
         
         else
-        //if ((message[i]>=32 && message[i]<=64) || (message[i]>=91 && message[i]<=96) || (message[i]>=123 && message[i]<=126))
-=======
-        if (message[i]>=65 && message[i]<=90)
-        {
-            message[i] = message[i]-65;
-            message[i] = (message[i] - key)%26;
-            message[i] = message[i]+65;
-        }
-        
-        if ((message[i]>=32 && message[i]<=64) || (message[i]>=91 && message[i]<=96) || (message[i]>=123 && message[i]<=126))
->>>>>>> refs/heads/master
         {
             message[i] = message[i];
         }
     }
     printf("Decrypted message is: %s\n", message);
-<<<<<<< HEAD
-=======
     return 0;
 }
 
@@ -243,74 +199,135 @@ char task2(char* message, int key, int n)
 //and returns the message decrypted without knowledge of the key
 char task5(char* message, int n)
 {
-    checkWord = fopen("words.txt", "r");
-    if(checkWord == NULL) 
-    {
-        perror("fopen()");
-        return 0;
-    }
-    int i, key, k;
-    char strg[10];
+    int i, key, k, compare;
+    char c[10] = "THE";
+    char *result;
     
-    for (k=0; k<1; k++)
+    for (k=7; k<8; k++)
     {
         for (i=0; i<n; i++)
         {
             if (message[i]>=97 && message[i]<=122)
             {
                 message[i] = message[i]-97;
-                message[i] = (message[i] - k)%26;
-                message[i] = message[i]+97;
-            }
-            if (message[i]>=65 && message[i]<=90)
-            {
-                message[i] = message[i]-65;
-                message[i] = (message[i] - k)%26;
+                if ((message[i]-k)<0)
+                {
+                    message[i] = (message[i]-k+26)%26;
+                }
+                else
+                {
+                    message[i] = (message[i] - k)%26;   
+                }
                 message[i] = message[i]+65;
             }
-            if ((message[i]>=32 && message[i]<=64) || (message[i]>=91 && message[i]<=96) || (message[i]>=123 && message[i]<=126))
+            else if (message[i]>=65 && message[i]<=90)
+            {
+                message[i] = message[i]-65;
+                if ((message[i]-k)<0)
+                {
+                    message[i] = (message[i]-k+26)%26;
+                }
+                else
+                {
+                    message[i] = (message[i] - k)%26;   
+                }
+                message[i] = message[i]+65;
+            }
+            else
             {
                 message[i] = message[i];
             }
         }
-        //printf("%d\n", k);
-        while(feof(checkWord)==0)
+        //printf("%s\n", message);
+        result = strstr(message, c);
+        if (result != NULL)
         {
-            char c;
-            fscanf(checkWord, "%c", &c);
-            printf("%c", c);
-        }
-        fscanf(checkWord, "%s", strg);
-        printf("%s\n", strg);
-        printf("Decrypted message is: %s\n", message);
-        
-        
-    }
-    //for (i=0; i<n; i++)
-    //{
-        
-        
-      //  for (k=0; k<2; k++)
-        //{
-          //  if (message[i]>=97 && message[i]<=122)
+            //printf("%s", result);
+            //printf("it worked");
+            //key=k;
+            //printf("%d", key);
+            
+           // for (i=0; i<n; i++)
             //{
-              //  message[i] = message[i]-97;
-                //message[i] = (message[i] - k)%26;
-                //message[i] = message[i]+97;
-                //if (message[i]==)
-            //}
-       // }
-        //key =       
-    //}
- //   printf("Decrypted message is: %s\n", message);
->>>>>>> refs/heads/master
-    return 0;
-}
+              //  if (message[i]>=97 && message[i]<=122)
+                //{
+                  //  message[i] = message[i]-97;
+                    //message[i] = (message[i] - k)%26;
+                   // message[i] = message[i]+65;
+                //}/
+                //e/lse if (message[i]>=65 && message[i]<=90)
+                //{
+                  //  message[i] = message[i]-65;
+                    //message[i] = (message[i] - k)%26;
+                    //message[i] = message[i]+65;
+                //}
+                //else
+                //{
+                  //  message[i] = message[i];
+                //}
+           // }
+            printf("Decrypted message is: %s\n", message);
+            break;
+        }
+    }
 
-//Function which takes an encrypted message and number of characters in an array as input
-//and returns the message decrypted without knowledge of the key
-char task5(char* message, int n)
-{
+        //else
+        ///{
+        //	printf("didnt work");
+		//}    }
+
+        //printf("\nDecrypted message is: %s\n", message);
+        //while(!feof(checkWord))
+        //{
+          //  fscanf(checkWord, "%c", c);
+            //printf("%c", *c);
+            //char str1[] = "arbor";
+            //if(strstr(c, str1) != NULL)
+            //
+               // printf("yes");
+            //}
+            //if (strstr(message, c) != NULL)
+            //{
+                //printf("yes\n");
+                //break;
+            //}
+            //else
+            //{
+              //  printf("yes");
+                //break;
+            //}
+            
+            
+            //compare = strcmp(message, c);
+            //printf("\nDecrypted message is: %s\n", message);
+            //if (compare==0)
+            //{
+              //  key=k;
+                //printf("%d\n", key);
+                //printf("\nDecrypted message is: %s\n", message);
+                //break;
+            //}
+            //else
+            //{
+              //  printf("error");
+                //break;
+            //}
+
+            //printf("%d\n", compare);
+            
+            
+        
+        //{
+          //  char c;
+            //fscanf(checkWord, "%c", &c);
+            //printf("%c", c);
+        //}
+        //fscanf(checkWord, "%s", strg);
+        //printf("%s\n", strg);
+        //printf("\nDecrypted message is: %s\n", message);
+    
+    
+    
     //checkWord = fopen("words.txt", "r");
     //if(checkWord == NULL) 
     //{
@@ -331,7 +348,7 @@ char task5(char* message, int n)
                 //message[i] = (message[i] - k)%26;
                 //message[i] = message[i]+97;
             //}
-            //else if (message[i]>=65 && message[i]<=90)
+            //else if (message[i]>=65 &&3 message[i]<=90)
             //{
               //  message[i] = message[i]-65;
                 //message[i] = (message[i] - k)%26;
