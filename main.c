@@ -181,14 +181,15 @@ char task5(FILE *input_b, FILE *output_b)
         return 0;
     }
     char c;
-    cha *message;
     char word[10] = "THE";
-    //char message[200];
+    //int n=0;
+    char message[200];
     char *result;
     int k;
     
-    for (k=7; k<8; k++)
+    for (k=0; k<2; k++)
     {
+        int n=0;
         while(fscanf(input_b, "%c", &c) == 1)
         {
             if (c>=97 && c<=122)
@@ -221,34 +222,20 @@ char task5(FILE *input_b, FILE *output_b)
             {
                 c = c;
             }
-            printf("%c", c);    //Tester
-            
+            //printf("%c", c);
+            message[n] = c;
+            n++;
         }
-        //char message[200] = c;
-        //for (int i=0; i<200; i++)
+        printf("%s\n", message);
+        //message = &c;
+        //result = strstr(message, word);
+        //if (result != NULL)
         //{
-          //  message[i] = c;
+          //  printf("hello");
+            //fprintf(output_b, "%s", message); //Write character to output file
+            //printf("%s\n", message);    //Print character to console
+          //  break;
         //}
-        //printf("%s", message);
-        message = &c;
-        
-        result = strstr(message, word);
-        if (result != NULL)
-        {
-            fprintf(output_b, "%c", c); //Write character to output file
-            printf("%c", c);    //Print character to console
-            break;
-        }
-
-            //result = strstr(c, word);
-            //if (result != NULL)
-            //{
-              //  fprintf(output_b, "%c", c); //Write character to output file
-                //printf("%c", c);    //Print character to console
-                //break;
-
-            //}
-        //} 
     }
     fclose(input_b);
     fclose(output_b);
