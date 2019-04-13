@@ -28,7 +28,6 @@ int main()
     
     char c = 'a';
    //scanf("%c", &c);
-   int b, d, a;
     
     do
     {
@@ -186,8 +185,8 @@ char task2(char* message, int key, int n)
 
 //Function which takes an encrypted message and number of characters in an array as input
 //and returns the message decrypted without knowledge of the key
-//char task5(char* message, int n)
-//{
+char task5(char* message, int n)
+{
     //checkWord = fopen("words.txt", "r");
     //if(checkWord == NULL) 
     //{
@@ -278,5 +277,5 @@ char task2(char* message, int key, int n)
         
         
    // }
-  //  return 0;
-//}
+    return 0;
+}
