@@ -8,11 +8,11 @@
 //a rotation and substitution cipher. Messages can be decrypted with or 
 //without the rotation amount or alphabet substitution. To select an encryption
 //or decryption method, please choose from one of the given options when prompted.
-                        
+       
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+//tgasbdbjsabdjakgdyga
 char task1(char* message, int key, int n);  //Function prototype for task1 function
 char task2(char* message, int key, int n);  //Function prototype for task2 function
 char task5(char* message, int n);           //Function prototype for task5 function
