@@ -12,10 +12,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-char task1(char* message, int key, int n);  //Function prototype for task1 function
+char task1(int key);  //Function prototype for task1 function
 char task2(char* message, int key, int n);  //Function prototype for task2 function
 char task5(char* message, int n);           //Function prototype for task5 function
-//FILE *checkWord;
+FILE *input_a;
+FILE *output_a;
+
 
 int main()
 {
@@ -26,7 +28,7 @@ int main()
     printf("e) Task 5\n");
     printf("Selection: ");
     
-    char c = 'e';
+    char c = 'a';
    //scanf("%c", &c);
     
     do
@@ -36,22 +38,22 @@ int main()
             case 'a':   //Encrypt a message with a rotation cipher
             {
                 //char message[100];
-                char message[100] = "hello world!";
+                //char message[100] = "hello world!";
                 int key, i, n;
                 //printf("Enter a message to be encrypted: ");
                 //scanf("%s", message);
-                for (i=0; i<100; i++)   //Determine how many characters are in the array
-                {
-                    if (message[i] != '\0')
-                    {
-                        n++;
-                    }
-                    else
-                    {
-                        break;
-                    }
+                //for (i=0; i<100; i++)   //Determine how many characters are in the array
+                //{
+                  //  if (message[i] != '\0')
+                    //{
+                      //  n++;
+                    //}
+                    //else
+                    //{
+                      //  break;
+                    //}
                   
-                }
+                //}
                 printf("Enter the key: ");
                 scanf("%d", &key);
                 while ((key<0) || (key>26))
@@ -59,7 +61,7 @@ int main()
                     printf("Invalid key. Please try again.");
                     scanf("%d", &key);
                 }
-                task1(message, key, n);
+                task1(key);
                 break;
             }
             case 'b':   //Decrypt an encrypted message with a rotation cipher
@@ -123,30 +125,39 @@ int main()
 
 //Function which takes a message, key and number of characters in an array as input
 //and returns the message encrypted
-char task1(char* message, int key, int n)
+char task1(int key)
 {
-    int i;
-    
-    for (i=0; i<n; i++)
+    input_a = fopen("input_a.txt", "r");
+    output_a = fopen("output_a.txt", "w");
+    if(input_a == NULL) 
     {
-        if (message[i]>=97 && message[i]<=122)  //Test if character is lowercase
+        perror("fopen()");
+        return 0;
+    }
+    char c;
+    while(fscanf(input_a, "%c", &c) == 1)
+    {
+        if (c>=97 && c<=122)  //Test if character is lowercase
         {
-            message[i] = message[i]-97;
-            message[i] = (message[i] + key)%26;
-            message[i] = message[i]+65;
+            c = c-97;
+            c = (c + key)%26;
+            c = c+65;
         }
-        else if (message[i]>=65 && message[i]<=90)
+        else if (c>=65 && c<=90)
         {
-            message[i] = message[i]-65;
-            message[i] = (message[i] + key)%26;
-            message[i] = message[i]+65;
+            c = c-65;
+            c = (c + key)%26;
+            c = c+65;
         }
         else
         {
-            message[i] = message[i];
+            c=c;
         }
+        fprintf(output_a, "%c", c); //Write character to output file
+        printf("%c", c);    //Print character to console
     }
-    printf("Encrypted message is: %s\n", message);
+    fclose(input_a);
+    fclose(output_a);
     return 0;
 }
 
