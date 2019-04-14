@@ -176,7 +176,7 @@ char task5(FILE *input_b, FILE *output_b)
 {
     char c;
     char word1[10] = "THE";
-    char word2[10] = "IS";
+    char word2[10] = "IF";
     char message[600];
     char *result1, *result2;
     int k;
@@ -228,7 +228,8 @@ char task5(FILE *input_b, FILE *output_b)
         }
         fclose(input_b);
         result1 = strstr(message, word1);
-        if ((result1 != NULL))
+        //result2 = strstr(message, word2);
+        if ((result2 != NULL))// && (result2 != NULL))
         {
             fprintf(output_b, "%s", message); //Write character to output file
             fclose(output_b);
