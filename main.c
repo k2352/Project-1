@@ -185,13 +185,15 @@ char task5(FILE *input_b, FILE *output_b)
     //int n=0;
     char message[200];
     char *result;
-    int k;
+    int k, n;
     
     for (k=0; k<2; k++)
     {
-        int n=0;
+        printf("\n%d\n", k);
+        //n=0;
         while(fscanf(input_b, "%c", &c) == 1)
         {
+            //n=0;
             if (c>=97 && c<=122)
             {
                 c = c-97;
@@ -222,11 +224,16 @@ char task5(FILE *input_b, FILE *output_b)
             {
                 c = c;
             }
-            //printf("%c", c);
-            message[n] = c;
-            n++;
+            //message[n] = c;
+            //n++;
+            printf("%c", c);
         }
-        printf("%s\n", message);
+        //printf("%d\n", k);
+        //printf("\n%s\n", message);
+        //for (int i=0; i<n; i++)
+        //{
+          //  message[i] = 0;
+        //}
         //message = &c;
         //result = strstr(message, word);
         //if (result != NULL)
@@ -241,4 +248,6 @@ char task5(FILE *input_b, FILE *output_b)
     fclose(output_b);
     return 0;
 }
+
+
 
