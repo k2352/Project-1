@@ -175,9 +175,10 @@ char task2(int key)
 char task5(FILE *input_b, FILE *output_b)
 {
     char c;
-    char word[10] = "THE";
+    char word1[10] = "THE";
+    char word2[10] = "IS";
     char message[600];
-    char *result;
+    char *result1, *result2;
     int k;
     
     for (k=0; k<27; k++)
@@ -226,21 +227,23 @@ char task5(FILE *input_b, FILE *output_b)
             count++;
         }
         fclose(input_b);
-        result = strstr(message, word);
-        if (result != NULL)
+        result1 = strstr(message, word1);
+        if ((result1 != NULL))
         {
             fprintf(output_b, "%s", message); //Write character to output file
             fclose(output_b);
             printf("%s\n", message);    //Print character to console
             break;
         }
+        //result2 = strstr(message, word2);
+        //if ((result2 != NULL))
+        //{
+          //  fprintf(output_b, "%s", message); //Write character to output file
+           // fclose(output_b);
+            //printf("%s\n", message);    //Print character to console
+            //break;
+        //}
     }
     return 0;
 }
-
-
-
-
-
-
 
