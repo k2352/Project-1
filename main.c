@@ -169,39 +169,29 @@ char task2(int key)
     return 0;
 }
 
-//Function which takes an encrypted message and number of characters in an array as input
-//and returns the message decrypted without knowledge of the key
+//Function which takes an input and output file, decrypts the encrypted message, without 
+//knowledge of the key, present in the input file and writes the decrypted message to 
+//both the console and the output file
 char task5(FILE *input_b, FILE *output_b)
 {
-    //input_b = fopen("input_b.txt", "r");
-    //output_b = fopen("output_b.txt", "w");
-    //if(input_b == NULL) 
-    //{
-      //  perror("fopen()");
-        //return 0;
-    //}
     char c;
     char word[10] = "THE";
-    char message[200];
+    char message[600];
     char *result;
-    //int n=0;
     int k;
     
-    for (k=0; k<3; k++)
+    for (k=0; k<27; k++)
     {
         input_b = fopen("input_b.txt", "r");
-        //output_b = fopen("output_b.txt", "w");
+        output_b = fopen("output_b.txt", "w");
         if(input_b == NULL) 
         {
             perror("fopen()");
             return 0;
         }
         int count=0;
-        //for(int i=0; i<3; i++)
-        //while(feof(input_b)==0)
         while(fscanf(input_b, "%c", &c)==1)
         {
-            //fscanf(input_b, "%c", &c);
             if (c>=97 && c<=122)
             {
                 c = c-97;
@@ -225,7 +215,7 @@ char task5(FILE *input_b, FILE *output_b)
                 else
                 {
                     c = (c - k)%26;   
-                }
+            }
                 c = c+65;
             }
             else
@@ -234,32 +224,23 @@ char task5(FILE *input_b, FILE *output_b)
             }
             message[count] = c;
             count++;
-            //printf("%c", c);
-        
-        //fclose(input_b);
         }
-        //printf("%d", n);
-        //printf("%d\n", k);
-        printf("%s\n", message);
         fclose(input_b);
-        //for (int i=0; i<n; i++)
-        //{
-          //  message[i] = 0;
-        //}
-        //message = &c;
-        //result = strstr(message, word);
-        //if (result != NULL)
-        //{
-          //  printf("hello");
-            //fprintf(output_b, "%s", message); //Write character to output file
-            //printf("%s\n", message);    //Print character to console
-          //  break;
-        //}
+        result = strstr(message, word);
+        if (result != NULL)
+        {
+            fprintf(output_b, "%s", message); //Write character to output file
+            fclose(output_b);
+            printf("%s\n", message);    //Print character to console
+            break;
+        }
     }
-    //fclose(input_b);
-    //fclose(output_b);
     return 0;
 }
+
+
+
+
 
 
 
