@@ -173,27 +173,35 @@ char task2(int key)
 //and returns the message decrypted without knowledge of the key
 char task5(FILE *input_b, FILE *output_b)
 {
-    input_b = fopen("input_b.txt", "r");
-    output_b = fopen("output_b.txt", "w");
-    if(input_b == NULL) 
-    {
-        perror("fopen()");
-        return 0;
-    }
+    //input_b = fopen("input_b.txt", "r");
+    //output_b = fopen("output_b.txt", "w");
+    //if(input_b == NULL) 
+    //{
+      //  perror("fopen()");
+        //return 0;
+    //}
     char c;
     char word[10] = "THE";
-    //int n=0;
     char message[200];
     char *result;
-    int k, n;
+    //int n=0;
+    int k;
     
-    for (k=0; k<2; k++)
+    for (k=0; k<3; k++)
     {
-        printf("\n%d\n", k);
-        //n=0;
-        while(fscanf(input_b, "%c", &c) == 1)
+        input_b = fopen("input_b.txt", "r");
+        //output_b = fopen("output_b.txt", "w");
+        if(input_b == NULL) 
         {
-            //n=0;
+            perror("fopen()");
+            return 0;
+        }
+        int count=0;
+        //for(int i=0; i<3; i++)
+        //while(feof(input_b)==0)
+        while(fscanf(input_b, "%c", &c)==1)
+        {
+            //fscanf(input_b, "%c", &c);
             if (c>=97 && c<=122)
             {
                 c = c-97;
@@ -224,12 +232,16 @@ char task5(FILE *input_b, FILE *output_b)
             {
                 c = c;
             }
-            //message[n] = c;
-            //n++;
-            printf("%c", c);
+            message[count] = c;
+            count++;
+            //printf("%c", c);
+        
+        //fclose(input_b);
         }
+        //printf("%d", n);
         //printf("%d\n", k);
-        //printf("\n%s\n", message);
+        printf("%s\n", message);
+        fclose(input_b);
         //for (int i=0; i<n; i++)
         //{
           //  message[i] = 0;
@@ -244,8 +256,8 @@ char task5(FILE *input_b, FILE *output_b)
           //  break;
         //}
     }
-    fclose(input_b);
-    fclose(output_b);
+    //fclose(input_b);
+    //fclose(output_b);
     return 0;
 }
 
