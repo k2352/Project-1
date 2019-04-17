@@ -15,6 +15,7 @@
 char task1(int key);  //Function prototype for task1 function
 char task2(int key);  //Function prototype for task2 function
 char task3(char* key);  //Function prototype for task3 function
+char task4(char* key);  //Function prototype for task4 function
 char task5(FILE *input_b, FILE *output_b);  //Function prototype for task5 function
 FILE *input_a;
 FILE *output_a;
@@ -22,7 +23,8 @@ FILE *input_b;
 FILE *output_b;
 FILE *input_c;
 FILE *output_c;
-
+FILE *input_d;
+FILE *output_d;
 
 int main()
 {
@@ -30,11 +32,13 @@ int main()
     printf("a) Task 1\n");
     printf("b) Task 2\n");
     printf("c) Task 3\n");
+    printf("d) Task 4\n");
     printf("e) Task 5\n");
     printf("Selection: ");
     
-    char choice = 'c';
-   //scanf("%c", &choice);
+    //char choice = 'c';
+    char choice;
+    scanf("%c", &choice);
     
     do
     {
@@ -68,9 +72,7 @@ int main()
             }
             case 'c':
             {
-                char key[30];
-                //char key[] = "yhkqgvxfoluapwmtzecjdbsnri";
-                //char c;
+                char key[26];
                 printf("Enter the substitution key, 26 characters long: ");
                 scanf("%s", key);
                 for (int i=0; i<30; i++)
@@ -80,8 +82,22 @@ int main()
                         key[i] = key[i]-32;
                     }
                 }
-                //printf("%s", key);
                 task3(key);
+                break;
+            }
+            case 'd':
+            {
+                char key[26];
+                printf("Enter the substitution key, 26 characters long: ");
+                scanf("%s", key);
+                for (int i=0; i<30; i++)
+                {
+                    if ((key[i]>=97) && (key[i]<=122))
+                    {
+                        key[i] = key[i]-32;
+                    }
+                }
+                task4(key);
                 break;
             }
             case 'e':
@@ -191,11 +207,9 @@ char task2(int key)
 }
 
 //Function which takes a substitution key as input, reads a message from a file to encrypt,
-//prints that encrypted message to the console, and also writes the encrypted 
+//prints that encrypted message to the console, and also writes the encrypted message to an output file
 char task3(char* key)
 {
-    //printf("%s\n", key);
-    //printf("%d\n", n);
     input_c = fopen("input_c.txt", "r");
     output_c = fopen("output_c.txt", "w");
     if(input_c == NULL) 
@@ -210,16 +224,16 @@ char task3(char* key)
         if (ch>=97 && ch<=122)  //Test if character is lowercase
         {
             ch = ch-32;
-            for(int i=0; i<26; i++)
+            for(int i=0; i<8; i++)
             {
                 if (alpha[i]==ch)
                 {
                     ch = key[i];
+                    break;
                 }
             }
             ch = ch+32;
         }
-        //shabdasdg yasgd
         else if (ch>=65 && ch<=90)
         {
             for(int i=0; i<26; i++)
@@ -227,6 +241,7 @@ char task3(char* key)
                 if (alpha[i]==ch)
                 {
                     ch = key[i];
+                    break;
                 }
             }
         }
@@ -243,6 +258,61 @@ char task3(char* key)
     }
     fclose(input_c);
     fclose(output_c);
+    return 0;
+}
+
+//Function which takes a substitution key as input, reads a message from a file to decrypt,
+//prints that decrypted message to the console, and also writes the decrypted message to an output file
+char task4(char* key)
+{
+    input_d = fopen("input_d.txt", "r");
+    output_d = fopen("output_d.txt", "w");
+    if(input_d == NULL) 
+    {
+        perror("fopen()");
+        return 0;
+    }
+    char ch;
+    char alpha[26] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    while(fscanf(input_d, "%c", &ch) == 1)
+    {
+        if (ch>=97 && ch<=122)  //Test if character is lowercase
+        {
+            ch = ch-32;
+            for(int i=0; i<8; i++)
+            {
+                if (key[i]==ch)
+                {
+                    ch = alpha[i];
+                    break;
+                }
+            }
+            ch = ch+32;
+        }
+        else if (ch>=65 && ch<=90)
+        {
+            for(int i=0; i<26; i++)
+            {
+                if (key[i]==ch)
+                {
+                    ch = alpha[i];
+                    break;
+                }
+            }
+        }
+        else
+        {
+            ch=ch;
+        }
+        if (ch>=97 && ch<=122)
+        {
+            ch = ch-32;
+        }
+        fprintf(output_d, "%c", ch); //Write character to output file
+        printf("%c", ch);    //Print character to console
+    }
+    fclose(input_d);
+    fclose(output_d);
     return 0;
 }
 
@@ -324,6 +394,3 @@ char task5(FILE *input_b, FILE *output_b)
     }
     return 0;
 }
-
-
-
