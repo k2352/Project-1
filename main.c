@@ -8,17 +8,20 @@
 //a rotation and substitution cipher. Messages can be decrypted with or 
 //without the rotation amount or alphabet substitution. To select an encryption
 //or decryption method, please choose from one of the given options when prompted.
-       asdadasda
+       
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 char task1(int key);  //Function prototype for task1 function
 char task2(int key);  //Function prototype for task2 function
+char task3(char* key);  //Function prototype for task3 function
 char task5(FILE *input_b, FILE *output_b);  //Function prototype for task5 function
 FILE *input_a;
 FILE *output_a;
 FILE *input_b;
 FILE *output_b;
+FILE *input_c;
+FILE *output_c;
 
 
 int main()
@@ -30,12 +33,12 @@ int main()
     printf("e) Task 5\n");
     printf("Selection: ");
     
-    char c = 'e';
-   //scanf("%c", &c);
+    char choice = 'c';
+   //scanf("%c", &choice);
     
     do
     {
-        switch(c)
+        switch(choice)
         {
             case 'a':   //Encrypt a message with a rotation cipher
             {
@@ -63,16 +66,34 @@ int main()
                 task2(key);
                 break;
             }
+            case 'c':
+            {
+                char key[30];
+                //char key[] = "yhkqgvxfoluapwmtzecjdbsnri";
+                //char c;
+                printf("Enter the substitution key, 26 characters long: ");
+                scanf("%s", key);
+                for (int i=0; i<30; i++)
+                {
+                    if ((key[i]>=97) && (key[i]<=122))
+                    {
+                        key[i] = key[i]-32;
+                    }
+                }
+                //printf("%s", key);
+                task3(key);
+                break;
+            }
             case 'e':
             {
                 task5(input_b, output_b);
                 break;
             }
-            default: printf("Unknown option %c\n Please enter a, b, c or d\n", c);   
+            default: printf("Unknown option %c\n Please enter a, b, c or d\n", choice);   
         }
 
     }
-    while (c < 'a' || c > 'f');
+    while (choice < 'a' || choice > 'f');
     return 0;   
 }
 
@@ -169,6 +190,62 @@ char task2(int key)
     return 0;
 }
 
+//Function which takes a substitution key as input, reads a message from a file to encrypt,
+//prints that encrypted message to the console, and also writes the encrypted 
+char task3(char* key)
+{
+    //printf("%s\n", key);
+    //printf("%d\n", n);
+    input_c = fopen("input_c.txt", "r");
+    output_c = fopen("output_c.txt", "w");
+    if(input_c == NULL) 
+    {
+        perror("fopen()");
+        return 0;
+    }
+    char ch;
+    char alpha[26] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    while(fscanf(input_c, "%c", &ch) == 1)
+    {
+        if (ch>=97 && ch<=122)  //Test if character is lowercase
+        {
+            ch = ch-32;
+            for(int i=0; i<26; i++)
+            {
+                if (alpha[i]==ch)
+                {
+                    ch = key[i];
+                }
+            }
+            ch = ch+32;
+        }
+        //shabdasdg yasgd
+        else if (ch>=65 && ch<=90)
+        {
+            for(int i=0; i<26; i++)
+            {
+                if (alpha[i]==ch)
+                {
+                    ch = key[i];
+                }
+            }
+        }
+        else
+        {
+            ch=ch;
+        }
+        if (ch>=97 && ch<=122)
+        {
+            ch = ch-32;
+        }
+        fprintf(output_c, "%c", ch); //Write character to output file
+        printf("%c", ch);    //Print character to console
+    }
+    fclose(input_c);
+    fclose(output_c);
+    return 0;
+}
+
 //Function which takes an input and output file, decrypts the encrypted message, without 
 //knowledge of the key, present in the input file and writes the decrypted message to 
 //both the console and the output file
@@ -229,7 +306,7 @@ char task5(FILE *input_b, FILE *output_b)
         fclose(input_b);
         result1 = strstr(message, word1);
         //result2 = strstr(message, word2);
-        if ((result2 != NULL))// && (result2 != NULL))
+        if ((result1 != NULL))// && (result2 != NULL))
         {
             fprintf(output_b, "%s", message); //Write character to output file
             fclose(output_b);
@@ -247,4 +324,6 @@ char task5(FILE *input_b, FILE *output_b)
     }
     return 0;
 }
+
+
 
