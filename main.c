@@ -8,7 +8,7 @@
 //a rotation and substitution cipher. Messages can be decrypted with or 
 //without the rotation amount or alphabet substitution. To select an encryption
 //or decryption method, please choose from one of the given options when prompted.
-       
+       asdadasda
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
