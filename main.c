@@ -16,7 +16,8 @@ char task1(int key);  //Function prototype for task1 function
 char task2(int key);  //Function prototype for task2 function
 char task3(char* key);  //Function prototype for task3 function
 char task4(char* key);  //Function prototype for task4 function
-char task5(FILE *input_b, FILE *output_b);  //Function prototype for task5 function
+char task5(FILE *input_e, FILE *output_e);  //Function prototype for task5 function
+char task6(FILE *input_f, FILE *output_f);  //Function prototype for task6 function
 FILE *input_a;
 FILE *output_a;
 FILE *input_b;
@@ -25,6 +26,11 @@ FILE *input_c;
 FILE *output_c;
 FILE *input_d;
 FILE *output_d;
+FILE *input_e;
+FILE *output_e;
+FILE *input_f;
+FILE *output_f;
+FILE *words;
 
 int main()
 {
@@ -34,6 +40,7 @@ int main()
     printf("c) Task 3\n");
     printf("d) Task 4\n");
     printf("e) Task 5\n");
+    printf("f) Task 6\n");
     printf("Selection: ");
     
     //char choice = 'c';
@@ -102,14 +109,19 @@ int main()
             }
             case 'e':
             {
-                task5(input_b, output_b);
+                task5(input_e, output_e);
                 break;
             }
-            default: printf("Unknown option %c\n Please enter a, b, c or d\n", choice);   
+            case 'f':
+            {
+                task6(input_f, output_f);
+                break;
+            }
+            default: printf("Unknown option %c\n Please enter a, b, c, d, e or f\n", choice);   
         }
 
     }
-    while (choice < 'a' || choice > 'f');
+    while (choice < 'a' || choice > 'g');
     return 0;   
 }
 
@@ -317,28 +329,62 @@ char task4(char* key)
 }
 
 //Function which takes an input and output file, decrypts the encrypted message, without 
-//knowledge of the key, present in the input file and writes the decrypted message to 
+//knowledge of the key present in the input file and writes the decrypted message to 
 //both the console and the output file
-char task5(FILE *input_b, FILE *output_b)
+char task5(FILE *input_e, FILE *output_e)
 {
     char c;
-    char word1[10] = "THE";
-    char word2[10] = "IF";
+    char word1[10] = " THE ";
+    char word2[10] = " IS ";
+    char word3[10] = " OF ";
+    char word4[10] = " TO ";
+    char word5[10] = " AND ";
+    char word6[10] = " IN ";
+    char word7[10] = " IT ";
+    char word8[10] = " YOU ";
+    char word9[10] = " THAT ";
+    char word10[10] = " A ";
+
     char message[600];
-    char *result1, *result2;
-    int k;
+    char check[100000];
+    char *result1, *result2, *result3, *result4, *result5, *result6, *result7, *result8, *result9, *result10;
+    int k, number=0;
     
+    words = fopen("words.txt", "r");
+    if(words == NULL)
+    {
+        perror("fopen()");
+        return 0;
+    }
+    while(fscanf(words, "%c", &c)==1)
+    {
+            if (c>=97 && c<=122)
+            {
+                c = c-32;
+            }
+            else if (c>=65 && c<=90)
+            {
+                c = c;   
+            }
+            else
+            {
+                c = c;
+            }
+            check[number] = c;
+            number++;
+    }
+    //printf("%s", check);
     for (k=0; k<27; k++)
     {
-        input_b = fopen("input_b.txt", "r");
-        output_b = fopen("output_b.txt", "w");
-        if(input_b == NULL) 
+        input_e = fopen("input_e.txt", "r");
+        output_e = fopen("output_e.txt", "w");
+        if(input_e == NULL) 
         {
             perror("fopen()");
             return 0;
         }
         int count=0;
-        while(fscanf(input_b, "%c", &c)==1)
+        while(fscanf(input_e, "%c", &c)==1)
         {
             if (c>=97 && c<=122)
             {
@@ -373,24 +419,93 @@ char task5(FILE *input_b, FILE *output_b)
             message[count] = c;
             count++;
         }
-        fclose(input_b);
+        fclose(input_e);
         result1 = strstr(message, word1);
-        //result2 = strstr(message, word2);
-        if ((result1 != NULL))// && (result2 != NULL))
+        result2 = strstr(message, word2);
+        result3 = strstr(message, word3);
+        result4 = strstr(message, word4);
+        result5 = strstr(message, word5);
+        result6 = strstr(message, word6);
+        result7 = strstr(message, word7);
+        result8 = strstr(message, word8);
+        result9 = strstr(message, word9);
+        result10 = strstr(message, word10);
+        if ((result1 != NULL) && (result2 == NULL) && (result3 == NULL))
         {
-            fprintf(output_b, "%s", message); //Write character to output file
-            fclose(output_b);
+            fprintf(output_e, "%s", message); //Write character to output file
+            //fclose(output_e);
             printf("%s\n", message);    //Print character to console
             break;
         }
-        //result2 = strstr(message, word2);
-        //if ((result2 != NULL))
-        //{
-          //  fprintf(output_b, "%s", message); //Write character to output file
-           // fclose(output_b);
-            //printf("%s\n", message);    //Print character to console
-            //break;
-        //}
+        else if((result2 != NULL) && (result1 == NULL) && (result3 == NULL))
+        {
+            fprintf(output_e, "%s", message); //Write character to output file
+            printf("%s\n", message);    //Print character to console
+            break;
+        }
+        else if ((result3 != NULL) && (result1 == NULL) && (result2 == NULL))
+        {
+            fprintf(output_e, "%s", message); //Write character to output file
+            printf("%s\n", message);    //Print character to console
+            break;
+        }
+        else if ((result4 != NULL))
+        {
+            fprintf(output_e, "%s", message); //Write character to output file
+            printf("%s\n", message);    //Print character to console
+            break;
+        }
+        else if ((result5 != NULL))
+        {
+            fprintf(output_e, "%s", message); //Write character to output file
+            printf("%s\n", message);    //Print character to console
+            break;
+        }
+        else if ((result6 != NULL))
+        {
+            fprintf(output_e, "%s", message); //Write character to output file
+            printf("%s\n", message);    //Print character to console
+            break;
+        }
+        else if ((result7 != NULL))
+        {
+            fprintf(output_e, "%s", message); //Write character to output file
+            printf("%s\n", message);    //Print character to console
+            break;
+        }
+        else if ((result8 != NULL))
+        {
+            fprintf(output_e, "%s", message); //Write character to output file
+            printf("%s\n", message);    //Print character to console
+            break;
+        }
+        else if ((result9 != NULL))
+        {
+            fprintf(output_e, "%s", message); //Write character to output file
+            printf("%s\n", message);    //Print character to console
+            break;
+        }
+        else if ((result10 != NULL))
+        {
+            fprintf(output_e, "%s", message); //Write character to output file
+            printf("%s\n", message);    //Print character to console
+            break;
+        }
+        else
+        {
+            continue;
+        }
     }
+    fclose(words);
     return 0;
 }
+
+//Function which takes an input and output file, decrypts the encrypted message, without 
+//knowledge of the key present in the input file and writes the decrypted message to 
+//both the console and the output file
+char task6(FILE *input_f, FILE *output_f)
+{
+    printf("hello");
+    return 0;
+}
+
