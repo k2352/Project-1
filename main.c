@@ -505,7 +505,181 @@ char task5(FILE *input_e, FILE *output_e)
 //both the console and the output file
 char task6(FILE *input_f, FILE *output_f)
 {
-    printf("hello");
+    char c;
+    char message[1000];
+    int alpha[26];
+    int count=0; //countA=0, countB=0, countC=0, countD=0, countE=0, countF=0, countG=0, countH=0, countI=0, countJ=0, countK=0, countL=0, countM=0, countN=0, countO=0, countP=0, countQ=0, countR=0, countS=0, countT=0, countU=0, countV=0, countW=0, countX=0, countY=0, countZ=0;
+    input_f = fopen("input_f.txt", "r");
+    output_f = fopen("output_f.txt", "w");
+    if(input_f == NULL) 
+    {
+        perror("fopen()");
+        return 0;
+    }
+    for (int i=0; i<26; i++)
+    {
+        alpha[i]=0;
+    }
+    while(fscanf(input_f, "%c", &c)==1)
+    {
+        if (c>=97 && c<=122)
+        {
+            c = c-32;
+        }
+        else
+        {
+            c = c;
+        }
+        message[count] = c;
+        count++;
+    }
+    for(int i=0; i<count; i++)
+    {
+        if(message[i]==65)
+        {
+            alpha[0]++;
+            //countA++;
+        }
+        if(message[i]==66)
+        {
+            alpha[1]++;
+            //countB++;
+        }
+        if(message[i]==67)
+        {
+            alpha[2]++;
+            //countC++;
+        }
+        if(message[i]==68)
+        {
+            alpha[3]++;
+//            countD++;
+        }
+        if(message[i]==69)
+        {
+            alpha[4]++;
+            //countE++;
+        }
+        if(message[i]==70)
+        {
+            alpha[5]++;
+            //countF++;
+        }
+        if(message[i]==71)
+        {
+            alpha[6]++;
+            //countG++;
+        }
+        if(message[i]==72)
+        {
+            alpha[7]++;
+            //countH++;
+        }
+        if(message[i]==73)
+        {
+            alpha[8]++;
+            //countI++;
+        }
+        if(message[i]==74)
+        {
+            alpha[9]++;
+            //countJ++;
+        }
+        if(message[i]==75)
+        {
+            alpha[10]++;
+            //countK++;
+        }
+        if(message[i]==76)
+        {
+            alpha[11]++;
+            //countL++;
+        }
+        if(message[i]==77)
+        {
+            alpha[12]++;
+            //countM++;
+        }
+        if(message[i]==78)
+        {
+            alpha[13]++;
+            //countN++;
+        }
+        if(message[i]==79)
+        {
+            alpha[14]++;
+            //countO++;
+        }
+        if(message[i]==80)
+        {
+            alpha[15]++;
+            //countP++;
+        }
+        if(message[i]==81)
+        {
+            alpha[16]++;
+            //countQ++;
+        }
+        if(message[i]==82)
+        {
+            alpha[17]++;
+            //countR++;
+        }
+        if(message[i]==83)
+        {
+            alpha[18]++;
+            //countS++;
+        }
+        if(message[i]==84)
+        {
+            alpha[19]++;
+            //countT++;
+        }
+        if(message[i]==85)
+        {
+            alpha[20]++;
+            //countU++;
+        }
+        if(message[i]==86)
+        {
+            alpha[21]++;
+            //countV++;
+        }
+        if(message[i]==87)
+        {
+            alpha[22]++;
+            //countW++;
+        }
+        if(message[i]==88)
+        {
+            alpha[23]++;
+            //countX++;
+        }
+        if(message[i]==89)
+        {
+            alpha[24]++;
+            //countY++;
+        }
+        if(message[i]==90)
+        {
+            alpha[25]++;
+            //countZ++;
+        }
+    }
+    int maxValue = alpha[0];
+    for(int k=0; k<26; k++)
+    {
+        if(alpha[k]>maxValue)
+        {
+            maxValue=alpha[k];
+        }
+    }
+    //need to find second biggest number in array
+    printf("%d", maxValue);
+    fclose(input_f);
+    fclose(output_f);
+    //fprintf(output_e, "%s", message); //Write character to output file
+    //printf("%s\n", message);    //Print character to console
+        
     return 0;
 }
-
