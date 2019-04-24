@@ -538,144 +538,140 @@ char task6(FILE *input_f, FILE *output_f)
         if(message[i]==65)
         {
             alpha[0]++;
-            //countA++;
         }
         if(message[i]==66)
         {
             alpha[1]++;
-            //countB++;
         }
         if(message[i]==67)
         {
             alpha[2]++;
-            //countC++;
         }
         if(message[i]==68)
         {
             alpha[3]++;
-//            countD++;
         }
         if(message[i]==69)
         {
             alpha[4]++;
-            //countE++;
         }
         if(message[i]==70)
         {
             alpha[5]++;
-            //countF++;
         }
         if(message[i]==71)
         {
             alpha[6]++;
-            //countG++;
         }
         if(message[i]==72)
         {
             alpha[7]++;
-            //countH++;
         }
         if(message[i]==73)
         {
             alpha[8]++;
-            //countI++;
         }
         if(message[i]==74)
         {
             alpha[9]++;
-            //countJ++;
         }
         if(message[i]==75)
         {
             alpha[10]++;
-            //countK++;
         }
         if(message[i]==76)
         {
             alpha[11]++;
-            //countL++;
         }
         if(message[i]==77)
         {
             alpha[12]++;
-            //countM++;
         }
         if(message[i]==78)
         {
             alpha[13]++;
-            //countN++;
         }
         if(message[i]==79)
         {
             alpha[14]++;
-            //countO++;
         }
         if(message[i]==80)
         {
             alpha[15]++;
-            //countP++;
         }
         if(message[i]==81)
         {
             alpha[16]++;
-            //countQ++;
         }
         if(message[i]==82)
         {
             alpha[17]++;
-            //countR++;
         }
         if(message[i]==83)
         {
             alpha[18]++;
-            //countS++;
         }
         if(message[i]==84)
         {
             alpha[19]++;
-            //countT++;
         }
         if(message[i]==85)
         {
             alpha[20]++;
-            //countU++;
         }
         if(message[i]==86)
         {
             alpha[21]++;
-            //countV++;
         }
         if(message[i]==87)
         {
             alpha[22]++;
-            //countW++;
         }
         if(message[i]==88)
         {
             alpha[23]++;
-            //countX++;
         }
         if(message[i]==89)
         {
             alpha[24]++;
-            //countY++;
         }
         if(message[i]==90)
         {
             alpha[25]++;
-            //countZ++;
         }
     }
-    int maxValue = alpha[0];
+    int maxValue1 = alpha[0];
+    int maxValue2 = alpha[0];
+    int m1, m2;
+    int index;
+    char alpha1[26] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    char cipher[26];
+    
     for(int k=0; k<26; k++)
     {
-        if(alpha[k]>maxValue)
+        if(alpha[k]>maxValue1)
         {
-            maxValue=alpha[k];
+            maxValue1=alpha[k];
+            index=k+65;
+            cipher[4] = index;
+            if((alpha[4])==(cipher[4]))
+            {
+                cipher[4]=cipher[4];
+            }
         }
     }
-    //need to find second biggest number in array
-    printf("%d", maxValue);
+    for(int k=0; k<26; k++)
+    {
+        if((alpha[k]>maxValue2) && (alpha[k]<maxValue1))
+        {
+            maxValue2=alpha[k];
+            m2=k;
+            
+        }
+    }
+    printf("%c\n", cipher[4]);
+    //printf("%d\n", m1);
+    //printf("%d\n", m2);
     fclose(input_f);
     fclose(output_f);
     //fprintf(output_e, "%s", message); //Write character to output file
