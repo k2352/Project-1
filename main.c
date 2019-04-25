@@ -2,12 +2,21 @@
 //Student ID: 3304030
 //Title: ENGG1003 Project 1
 //Date created: 02/04/2019
-//Date last modified: 08/04/2019
+//Date last modified: 28/04/2019
+
 //Program Description:  
 //This program allows the user to encrypt and decrypt messages with both
 //a rotation and substitution cipher. Messages can be decrypted with or 
 //without the rotation amount or alphabet substitution. To select an encryption
 //or decryption method, please choose from one of the given options when prompted.
+//The options are as follows: 'a' for task1, which will encrypt a given message with
+//a rotation cipher given the rotation amount; 'b' for task2, which will decrypt a 
+//given message with a rotation cipher given the rotation amount; 'c' for task3, which 
+//will encrypt a given message with a substitution cipher given the substitution key; 
+//'d' for task4, which will decrypt a given message with a substitution cipher given the
+//substitution key; 'e' for task5, which will decrypt a given encrypted message with a 
+//rotation cipher without the rotation amount; and 'f' for task6, which will decrypt a given
+//decrypted message with a substituion cipher without the substitution key
        
 #include <stdio.h>
 #include <stdlib.h>
@@ -43,20 +52,22 @@ int main()
     printf("f) Task 6\n");
     printf("Selection: ");
     
-    //char choice = 'c';
     char choice;
     scanf("%c", &choice);
     
+    //do-while loop, which runs while choice is valid, that is,
+    //while choice is between 'a' and 'f'
     do
     {
+        //switch statement, which runs for each case from 'a' to 'f'
         switch(choice)
         {
             case 'a':   //Encrypt a message with a rotation cipher
             {
                 int key;
-                printf("Enter the key: ");
+                printf("Enter the key: ");  //Ask the user the rotation key
                 scanf("%d", &key);
-                while ((key<0) || (key>26))
+                while ((key<0) || (key>26)) //Check that the key is valid, if not, ask again
                 {
                     printf("Invalid key. Please try again.");
                     scanf("%d", &key);
@@ -67,9 +78,9 @@ int main()
             case 'b':   //Decrypt an encrypted message with a rotation cipher
             {
                 int key;
-                printf("Enter the key: ");
+                printf("Enter the key: ");  //Ask the user for the rotation key
                 scanf("%d", &key);
-                while ((key<0) || (key>26))
+                while ((key<0) || (key>26)) //Check if key is valid
                 {
                     printf("Invalid key. Please try again.");
                     scanf("%d", &key);
@@ -77,11 +88,12 @@ int main()
                 task2(key);
                 break;
             }
-            case 'c':
+            case 'c':   //Encrypt a message with a substitution cipher
             {
                 char key[26];
                 printf("Enter the substitution key, 26 characters long: ");
                 scanf("%s", key);
+                //for loop to check if any characters in key array are lowercase, if so, change to uppercase
                 for (int i=0; i<30; i++)
                 {
                     if ((key[i]>=97) && (key[i]<=122))
@@ -92,11 +104,12 @@ int main()
                 task3(key);
                 break;
             }
-            case 'd':
+            case 'd':   //Decrypt an encrypted message with a substitution cipher
             {
                 char key[26];
                 printf("Enter the substitution key, 26 characters long: ");
                 scanf("%s", key);
+                //for loop to check if any characters in key array are lowercase, if so, change to uppercase
                 for (int i=0; i<30; i++)
                 {
                     if ((key[i]>=97) && (key[i]<=122))
@@ -107,12 +120,12 @@ int main()
                 task4(key);
                 break;
             }
-            case 'e':
+            case 'e':   //Decrypt a given encrypted message, without knowledge of the rotation key, with a rotation cipher
             {
                 task5(input_e, output_e);
                 break;
             }
-            case 'f':
+            case 'f':   //Decrypt a given encrypted message, without knowledge of the substitution key, with a substitution cipher
             {
                 task6(input_f, output_f);
                 break;
@@ -291,7 +304,7 @@ char task4(char* key)
         if (ch>=97 && ch<=122)  //Test if character is lowercase
         {
             ch = ch-32;
-            for(int i=0; i<8; i++)
+            for(int i=0; i<26; i++)
             {
                 if (key[i]==ch)
                 {
@@ -642,8 +655,10 @@ char task6(FILE *input_f, FILE *output_f)
     }
     int maxValue1 = alpha[0];
     int maxValue2 = alpha[0];
-    int m1, m2;
-    int index;
+    int maxValue3 = alpha[0];
+    int maxValue4 = alpha[0];
+    int maxValue5 = alpha[0];
+    int index1, index2, index3;
     char alpha1[26] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     char cipher[26];
     
@@ -652,12 +667,8 @@ char task6(FILE *input_f, FILE *output_f)
         if(alpha[k]>maxValue1)
         {
             maxValue1=alpha[k];
-            index=k+65;
-            cipher[4] = index;
-            if((alpha[4])==(cipher[4]))
-            {
-                cipher[4]=cipher[4];
-            }
+            index1=k+65;
+            cipher[4] = index1;
         }
     }
     for(int k=0; k<26; k++)
@@ -665,17 +676,43 @@ char task6(FILE *input_f, FILE *output_f)
         if((alpha[k]>maxValue2) && (alpha[k]<maxValue1))
         {
             maxValue2=alpha[k];
-            m2=k;
-            
+            index2=k+65;
+            cipher[19] = index2;
         }
     }
-    printf("%c\n", cipher[4]);
-    //printf("%d\n", m1);
-    //printf("%d\n", m2);
+    for(int k=0; k<26; k++)
+    {
+        if((alpha[k]>maxValue3) && (alpha[k]<maxValue2) && (alpha[k]<maxValue1))
+        {
+            maxValue3=alpha[k];
+            index3=k+65;
+            cipher[0] = index3;
+        }
+    }
+    //printf("%c\n", cipher[4]);
+    //printf("%c\n", cipher[19]);
+    for(int i=0; i<count; i++)
+    {
+        if((message[i]>=65) && message[i]<=90)
+        {
+            for(int k=0; k<26; k++)
+            {
+                if(cipher[k]==message[i])
+                {
+                    message[i] = alpha1[k];
+                    break;
+                }
+            }
+        }
+        else
+        {
+            message[i]=message[i];
+        }
+    }
+    printf("%s\n", message);    //Print character to console
+    fprintf(output_f, "%s", message);   //Write a character to output file
     fclose(input_f);
     fclose(output_f);
-    //fprintf(output_e, "%s", message); //Write character to output file
-    //printf("%s\n", message);    //Print character to console
-        
     return 0;
 }
+
