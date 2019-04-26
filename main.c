@@ -658,7 +658,28 @@ char task6(FILE *input_f, FILE *output_f)
     int maxValue3 = alpha[0];
     int maxValue4 = alpha[0];
     int maxValue5 = alpha[0];
-    int index1, index2, index3;
+    int maxValue6 = alpha[0];
+    int maxValue7 = alpha[0];
+    int maxValue8 = alpha[0];
+    int maxValue9 = alpha[0];
+    int maxValue10 = alpha[0];
+    int maxValue11 = alpha[0];
+    int maxValue12 = alpha[0];
+    int maxValue13 = alpha[0];
+    int maxValue14 = alpha[0];
+    int maxValue15 = alpha[0];
+    int maxValue16 = alpha[0];
+    int maxValue17 = alpha[0];
+    int maxValue18 = alpha[0];
+    int maxValue19 = alpha[0];
+    int maxValue20 = alpha[0];
+    int maxValue21 = alpha[0];
+    int maxValue22 = alpha[0];
+    int maxValue23 = alpha[0];
+    int maxValue24 = alpha[0];
+    int maxValue25 = alpha[0];
+    int maxValue26 = alpha[0];
+    int index1, index2, index3, index4, index5, index6, index7, index8, index9, index10, index11, index12, index13, index14, index15, index16, index17, index18, index19, index20, index21, index22, index23, index24, index25, index26;
     char alpha1[26] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     char cipher[26];
     
@@ -689,8 +710,78 @@ char task6(FILE *input_f, FILE *output_f)
             cipher[0] = index3;
         }
     }
-    //printf("%c\n", cipher[4]);
-    //printf("%c\n", cipher[19]);
+    for(int k=0; k<26; k++)
+    {
+        if((alpha[k]>maxValue4) && (alpha[k]<maxValue3) && (alpha[k]<maxValue2) && (alpha[k]<maxValue1))
+        {
+            maxValue4=alpha[k];
+            index4=k+65;
+            cipher[8] = index4;
+        }
+    }
+    for(int k=0; k<26; k++)
+    {
+        if((alpha[k]>maxValue5) && (alpha[k]<maxValue4) && (alpha[k]<maxValue3) && (alpha[k]<maxValue2) && (alpha[k]<maxValue1))
+        {
+            maxValue5=alpha[k];
+            index5=k+65;
+            cipher[13] = index5;
+        }
+    }
+    for(int k=0; k<26; k++)
+    {
+        if((alpha[k]>maxValue6) && (alpha[k]<maxValue5) && (alpha[k]<maxValue4) && (alpha[k]<maxValue3) && (alpha[k]<maxValue2) && (alpha[k]<maxValue1))
+        {
+            maxValue6=alpha[k];
+            index6=k+65;
+            cipher[14] = index6;
+        }
+    }
+    for(int k=0; k<26; k++)
+    {
+        if((alpha[k]>maxValue7) && (alpha[k]<maxValue6) && (alpha[k]<maxValue5) && (alpha[k]<maxValue4) && (alpha[k]<maxValue3) && (alpha[k]<maxValue2) && (alpha[k]<maxValue1))
+        {
+            maxValue7=alpha[k];
+            index7=k+65;
+            cipher[18] = index7;
+        }
+    }
+    for(int k=0; k<26; k++)
+    {
+        if((alpha[k]>maxValue8) && (alpha[k]<maxValue7) && (alpha[k]<maxValue6) && (alpha[k]<maxValue5) && (alpha[k]<maxValue4) && (alpha[k]<maxValue3) && (alpha[k]<maxValue2) && (alpha[k]<maxValue1))
+        {
+            maxValue8=alpha[k];
+            index8=k+65;
+            cipher[7] = index8;
+        }
+    }
+    for(int k=0; k<26; k++)
+    {
+        if((alpha[k]>maxValue9) && (alpha[k]<maxValue8) && (alpha[k]<maxValue7) && (alpha[k]<maxValue6) && (alpha[k]<maxValue5) && (alpha[k]<maxValue4) && (alpha[k]<maxValue3) && (alpha[k]<maxValue2) && (alpha[k]<maxValue1))
+        {
+            maxValue9=alpha[k];
+            index9=k+65;
+            cipher[17] = index9;
+        }
+    }
+    for(int k=0; k<26; k++)
+    {
+        if((alpha[k]>maxValue10) && (alpha[k]<maxValue9) && (alpha[k]<maxValue8) && (alpha[k]<maxValue7) && (alpha[k]<maxValue6) && (alpha[k]<maxValue5) && (alpha[k]<maxValue4) && (alpha[k]<maxValue3) && (alpha[k]<maxValue2) && (alpha[k]<maxValue1))
+        {
+            maxValue10=alpha[k];
+            index10=k+65;
+            cipher[3] = index10;
+        }
+    }
+    for(int k=0; k<26; k++)
+    {
+        if((alpha[k]>maxValue11) && (alpha[k]<maxValue10) && (alpha[k]<maxValue9) && (alpha[k]<maxValue8) && (alpha[k]<maxValue7) && (alpha[k]<maxValue6) && (alpha[k]<maxValue5) && (alpha[k]<maxValue4) && (alpha[k]<maxValue3) && (alpha[k]<maxValue2) && (alpha[k]<maxValue1))
+        {
+            maxValue11=alpha[k];
+            index11=k+65;
+            cipher[11] = index11;
+        }
+    }
     for(int i=0; i<count; i++)
     {
         if((message[i]>=65) && message[i]<=90)
@@ -715,4 +806,3 @@ char task6(FILE *input_f, FILE *output_f)
     fclose(output_f);
     return 0;
 }
-
