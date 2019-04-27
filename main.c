@@ -361,11 +361,21 @@ char task5(FILE *input_e, FILE *output_e)
     char word8[10] = " YOU ";
     char word9[10] = " THAT ";
     char word10[10] = " A ";
+    char word11[10] = " I ";
+    char word12[10] = " HE ";
+    char word13[10] = " WAS ";
+    char word14[10] = " FOR ";
+    char word15[10] = " ON ";
+    char word16[10] = " ARE ";
+    char word17[10] = " AS ";
+    char word18[10] = " WITH ";
+    char word19[10] = " HIS ";
+    char word20[10] = " THEY ";
 
     char message[1000];  //Array containing characters present in the message
-    char *result1, *result2, *result3, *result4, *result5, *result6, *result7, *result8, *result9, *result10;
-    int k, number=0;
-    for (k=0; k<27; k++)    //Loop through possible values of k, to find the rotation key value
+    char *result1, *result2, *result3, *result4, *result5, *result6, *result7, *result8, *result9, *result10, *result11, *result12, *result13, *result14, *result15, *result16, *result17, *result18, *result19, *result20;
+    int number=0;
+    for (int k=0; k<27; k++)    //Loop through possible values of k, to find the rotation key value
     {
         input_e = fopen("input_e.txt", "r");    //Open input_e.txt file  
         output_e = fopen("output_e.txt", "w");  //Open output_e.txt file
@@ -421,6 +431,16 @@ char task5(FILE *input_e, FILE *output_e)
         result8 = strstr(message, word8);
         result9 = strstr(message, word9);
         result10 = strstr(message, word10);
+        result11 = strstr(message, word11);
+        result12 = strstr(message, word11);
+        result13 = strstr(message, word11);
+        result14 = strstr(message, word11);
+        result15 = strstr(message, word11);
+        result16 = strstr(message, word11);
+        result17 = strstr(message, word11);
+        result18 = strstr(message, word11);
+        result19 = strstr(message, word11);
+        result20 = strstr(message, word11);
         if ((result1 != NULL) && (result2 == NULL) && (result3 == NULL))    //Check if word1 is present in message
         {
             fprintf(output_e, "%s", message); //Write character to output file
@@ -476,6 +496,66 @@ char task5(FILE *input_e, FILE *output_e)
             break;
         }
         else if ((result10 != NULL))    //Check if word10 is present in message
+        {
+            fprintf(output_e, "%s", message); //Write character to output file
+            printf("%s\n", message);    //Print character to console
+            break;
+        }
+        else if ((result11 != NULL))    //Check if word11 is present in message
+        {
+            fprintf(output_e, "%s", message); //Write character to output file
+            printf("%s\n", message);    //Print character to console
+            break;
+        }
+        else if ((result12 != NULL))    //Check if word12 is present in message
+        {
+            fprintf(output_e, "%s", message); //Write character to output file
+            printf("%s\n", message);    //Print character to console
+            break;
+        }
+        else if ((result13 != NULL))    //Check if word13 is present in message
+        {
+            fprintf(output_e, "%s", message); //Write character to output file
+            printf("%s\n", message);    //Print character to console
+            break;
+        }
+        else if ((result14 != NULL))    //Check if word14 is present in message
+        {
+            fprintf(output_e, "%s", message); //Write character to output file
+            printf("%s\n", message);    //Print character to console
+            break;
+        }
+        else if ((result15 != NULL))    //Check if word15 is present in message
+        {
+            fprintf(output_e, "%s", message); //Write character to output file
+            printf("%s\n", message);    //Print character to console
+            break;
+        }
+        else if ((result16 != NULL))    //Check if word16 is present in message
+        {
+            fprintf(output_e, "%s", message); //Write character to output file
+            printf("%s\n", message);    //Print character to console
+            break;
+        }
+        else if ((result17 != NULL))    //Check if word17 is present in message
+        {
+            fprintf(output_e, "%s", message); //Write character to output file
+            printf("%s\n", message);    //Print character to console
+            break;
+        }
+        else if ((result18 != NULL))    //Check if word18 is present in message
+        {
+            fprintf(output_e, "%s", message); //Write character to output file
+            printf("%s\n", message);    //Print character to console
+            break;
+        }
+        else if ((result19 != NULL))    //Check if word19 is present in message
+        {
+            fprintf(output_e, "%s", message); //Write character to output file
+            printf("%s\n", message);    //Print character to console
+            break;
+        }
+        else if ((result20 != NULL))    //Check if word20 is present in message
         {
             fprintf(output_e, "%s", message); //Write character to output file
             printf("%s\n", message);    //Print character to console
