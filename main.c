@@ -2,7 +2,7 @@
 //Student ID: 3304030
 //Title: ENGG1003 Project 1
 //Date created: 02/04/2019
-//Date last modified: 27/04/2019
+//Date last modified: 29/04/2019
 
 //Program Description:  
 //This program allows the user to encrypt and decrypt messages with both
@@ -45,6 +45,7 @@ FILE *input_g;
 FILE *output_g;
 FILE *words;
 
+//Main function
 int main()
 {
     printf("Please select an option: \n");  //Ask the user which task they would like to run
